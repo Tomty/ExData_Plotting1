@@ -15,9 +15,7 @@ unlink(temp)
 df <- subset(df, Date == "2/2/2007" | Date == "1/2/2007")
 df <- mutate(df, DateTime = strptime(paste(Date,Time,sep = " "), "%d/%m/%Y %H:%M:%S"))
 
-### Exporting plot
-
-png("plot4.png") 
+### Making plot
 
 par(mfrow=c(2,2))
 
@@ -29,4 +27,7 @@ lines(df$DateTime, df$Sub_metering_3, type = "l", col = "red")
 legend("topright", col = c("black","blue", "red"), legend = c("Sub_metering_1", "Sub_metering_2","Sub_metering_3"), lty = 1)
 plot(df$DateTime, df$Global_reactive_power, type = "l", ylab = "Global_reactive_power", xlab = "datetime")
 
+### Export as png
+
+dev.copy(png,'plot4.png')
 dev.off()
